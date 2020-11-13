@@ -45,6 +45,7 @@ public class TestRepresentant {
 			// Message si erreur
 			"Le salaire mensuel est incorrect"
 		); 
+               
 	}
 
 	@Test
@@ -79,9 +80,32 @@ public class TestRepresentant {
 			fail("Un CA négatif doit générer une exception"); // Forcer l'échec du test			
 		} catch (IllegalArgumentException e) {
 			// Si on arrive ici, c'est normal, c'est le comportement attendu
-		}
-
+		}}
+         
+        @Test
+        public void testMoisImpossibleChiffreAffaires(){
+            try{
+                r.enregistrerCA(-1, FIXE_BASTIDE);
+                fail("Un mois négatif doit générer une exception");
+            }catch (IllegalArgumentException e){
+                    }    
+        }
+        
+        @Test
+        public void testMoisImpossibleSalaireMensuel(){
+            try{
+                r.salaireMensuel(12, 0.2f);
+                fail("Un mois supérieur a 11 doit générer une exception");
+            }catch (IllegalArgumentException e){
 	}
+        }
 	
-	
+        @Test
+        public void testPourcentageImpossible(){
+            try{
+                r.salaireMensuel(0, -3f);
+                fail("Un pourcentage négatif doit générer une exception");
+            }catch (IllegalArgumentException e){
+	}
+        }
 }
